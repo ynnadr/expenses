@@ -1,0 +1,296 @@
+/* Reset & Basic Setup */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f2f5; /* Light grey background */
+    color: #333;
+    line-height: 1.6;
+    padding-top: 20px; /* Add space at the top */
+    padding-bottom: 50px; /* Space for footer or just breathing room */
+}
+
+.container {
+    max-width: 600px; /* Max width for larger screens */
+    margin: 0 auto;
+    padding: 0 15px; /* Padding on mobile */
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #4a4a4a;
+}
+
+header h1 {
+    font-weight: 600;
+    font-size: 1.8em; /* Slightly larger title */
+}
+
+header h1 i {
+    margin-right: 8px;
+    color: #007bff; /* Primary color for icon */
+}
+
+
+/* Card Styling */
+.card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #0056b3; /* Darker blue for headings */
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+}
+
+.card h2 i {
+    margin-right: 8px;
+}
+
+/* Budget Summary */
+.budget-summary .summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+
+.budget-summary .summary-item span {
+    color: #555;
+}
+
+.budget-summary .summary-item strong {
+    font-weight: 600;
+}
+
+.budget-summary .remaining strong {
+    color: #28a745; /* Green for remaining budget */
+    font-size: 1.1em;
+}
+.budget-summary .remaining.warning strong {
+    color: #ffc107; /* Yellow for warning */
+}
+.budget-summary .remaining.overspending strong {
+    color: #dc3545; /* Red for overspending */
+}
+
+.progress-bar-container {
+    background-color: #e9ecef;
+    border-radius: 25px;
+    height: 12px; /* Slimmer progress bar */
+    overflow: hidden;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.progress-bar {
+    background-color: #28a745; /* Default Green */
+    height: 100%;
+    width: 0%; /* Starts at 0 */
+    border-radius: 25px;
+    transition: width 0.5s ease-in-out, background-color 0.5s ease;
+}
+
+.progress-bar.warning {
+    background-color: #ffc107; /* Yellow */
+}
+
+.progress-bar.overspending {
+    background-color: #dc3545; /* Red */
+}
+
+#set-budget-btn {
+    margin-top: 15px;
+    width: 100%;
+}
+
+/* Form Styling */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 400; /* Lighter label weight */
+    color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 1em;
+    font-family: 'Poppins', sans-serif;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Button Styling */
+.btn {
+    display: inline-block; /* Allows side-by-side */
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 10px 15px;
+    font-size: 1em;
+    border-radius: 6px;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn i {
+    margin-right: 5px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+.btn-info:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+}
+
+
+/* Expense List */
+#expenses-ul {
+    list-style: none;
+    padding: 0;
+    max-height: 300px; /* Limit height and make scrollable */
+    overflow-y: auto; /* Add scroll only when needed */
+}
+
+#expenses-ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5px; /* Slightly less padding */
+    border-bottom: 1px solid #eee;
+    font-size: 0.95em;
+}
+
+#expenses-ul li:last-child {
+    border-bottom: none;
+}
+
+#expenses-ul .no-expenses {
+    text-align: center;
+    color: #888;
+    padding: 20px;
+    font-style: italic;
+    justify-content: center; /* Center the text */
+}
+
+#expenses-ul .expense-item span {
+    flex-grow: 1; /* Allow description to take space */
+    margin-right: 10px;
+    word-break: break-word; /* Break long descriptions */
+}
+
+#expenses-ul .expense-item .amount {
+    font-weight: 600;
+    min-width: 80px; /* Ensure amount alignment */
+    text-align: right;
+    margin-right: 10px;
+    color: #dc3545; /* Make expense amount red */
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    font-size: 1.1em;
+    padding: 5px; /* Make clickable area slightly larger */
+}
+.delete-btn:hover {
+    color: #a71d2a;
+}
+
+/* Data Management */
+.data-management .disclaimer {
+    font-size: 0.85em;
+    color: #6c757d;
+    margin-bottom: 15px;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 4px;
+    border-left: 3px solid #17a2b8; /* Info color */
+}
+.data-management .disclaimer i {
+    margin-right: 5px;
+}
+
+.data-management .button-group {
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap on small screens */
+    gap: 10px; /* Space between buttons */
+}
+
+.data-management .button-group .btn {
+     flex-grow: 1; /* Allow buttons to grow */
+     min-width: 120px; /* Minimum button width */
+}
+
+
+/* Responsive Adjustments (Optional - for larger screens if needed) */
+@media (min-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+    /* You could potentially make layout wider or adjust spacing */
+}
