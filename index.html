@@ -4,28 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pelacak Anggaran</title>
+
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
-    <!-- ... (Font links) ... -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- Google Fonts (Poppins) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome (Icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+
     <div class="container">
-        <!-- ... (Header) ... -->
-         <header>
+        <header>
             <h1><i class="fas fa-wallet"></i> Pelacak Anggaran</h1>
         </header>
 
-        <!-- REVISI: Section Budget Summary SEKARANG HANYA TAMPILKAN CHART -->
+        <!-- Section Chart Kategori -->
         <section class="category-chart-card card">
             <h2><i class="fas fa-chart-pie"></i> Pengeluaran per Kategori</h2>
             <div class="chart-container">
-                 {/* REVISI: Ganti ID canvas */}
                 <canvas id="categoryPieChart"></canvas>
-                 <p id="no-expense-chart-msg" class="no-expenses-msg hidden">Belum ada data pengeluaran untuk ditampilkan.</p>
+                <!-- Pesan ini akan muncul jika tidak ada data pengeluaran -->
+                <p id="no-expense-chart-msg" class="no-expenses-msg hidden">Belum ada data pengeluaran untuk ditampilkan.</p>
             </div>
         </section>
 
-        {/* Section untuk detail budget dipisah (atau bisa digabung lagi jika mau) */}
+        <!-- Section Detail Anggaran & Progress -->
          <section class="budget-summary-details card">
              <h2 id="budget-name-display">Anggaran: (Belum Diatur)</h2>
              <div class="summary-details">
@@ -48,18 +56,73 @@
               <button id="set-budget-btn" class="btn btn-secondary"><i class="fas fa-edit"></i> Atur/Ubah Anggaran</button>
          </section>
 
+        <!-- Section Tambah Pengeluaran -->
+        <section class="add-expense card">
+            <h2><i class="fas fa-plus-circle"></i> Tambah Pengeluaran</h2>
+            <form id="expense-form">
+                <div class="form-group">
+                    <label for="expense-description">Deskripsi:</label>
+                    <input type="text" id="expense-description" placeholder="Contoh: Makan siang, Beras 10kg" required>
+                </div>
+                <div class="form-group category-group">
+                    <label for="expense-category">Kategori:</label>
+                    <div class="category-select-wrapper">
+                         <select id="expense-category" required>
+                            <option value="" disabled selected>-- Pilih Kategori --</option>
+                            <!-- Opsi kategori akan diisi oleh JS -->
+                        </select>
+                        <button type="button" id="add-category-btn" class="btn-add-category" title="Tambah Kategori Baru">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label for="expense-date">Tanggal:</label>
+                    <input type="date" id="expense-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="expense-amount">Jumlah (Rp):</label>
+                    <input type="number" id="expense-amount" placeholder="Contoh: 50000" required min="0" step="any">
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Tambahkan</button>
+            </form>
+        </section>
 
-        <!-- ... (Section Add Expense, Expense List, Data Management tetap sama) ... -->
-        <section class="add-expense card"> /* ... Form ... */ </section>
-        <section class="expense-list card"> /* ... Daftar ... */ </section>
-        <section class="data-management card"> /* ... Tombol Data ... */ </section>
+        <!-- Section Daftar Pengeluaran -->
+        <section class="expense-list card">
+            <h2><i class="fas fa-list-ul"></i> Daftar Pengeluaran</h2>
+            <ul id="expenses-ul">
+                <!-- Daftar pengeluaran akan muncul di sini -->
+                <li class="no-expenses">Belum ada pengeluaran.</li>
+            </ul>
+        </section>
 
-    </div>
+        <!-- Section Manajemen Data -->
+         <section class="data-management card">
+            <h2><i class="fas fa-database"></i> Manajemen Data</h2>
+            <p class="disclaimer">
+                <i class="fas fa-info-circle"></i> Data Anda disimpan hanya di browser ini. Bersihkan cache akan menghapus data. Lakukan backup secara berkala menggunakan tombol Ekspor.
+            </p>
+            <div class="button-group">
+                <button id="export-btn" class="btn btn-info"><i class="fas fa-download"></i> Ekspor Data</button>
+                <!-- Label ini berfungsi sebagai tombol visual untuk input file -->
+                <label for="import-file" class="btn btn-info"><i class="fas fa-upload"></i> Impor Data</label>
+                <!-- Input file asli disembunyikan, diaktifkan oleh label di atas -->
+                <input type="file" id="import-file" accept=".json" style="display: none;">
+                <button id="clear-data-btn" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Hapus Semua Data</button>
+            </div>
+        </section>
 
-    <footer></footer>
+    </div><!-- Akhir .container -->
 
-    <!-- Pastikan CDN Chart.js ada di sini -->
+    <footer>
+        <!-- Bisa ditambahkan info copyright atau link di sini jika perlu -->
+    </footer>
+
+    <!-- Chart.js Library (Harus sebelum script.js) -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Script Aplikasi Utama -->
     <script src="script.js"></script>
 </body>
 </html>
