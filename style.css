@@ -1,8 +1,74 @@
-/* --- Tambahkan atau Modifikasi style berikut --- */
+/* =========================================
+   Reset & Basic Setup
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-/* ... (CSS sebelumnya tetap sama) ... */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f2f5; /* Light grey background */
+    color: #333;
+    line-height: 1.6;
+    padding-top: 20px; /* Add space at the top */
+    padding-bottom: 50px; /* Space for footer or just breathing room */
+}
 
-/* Styling untuk Nama Anggaran di Summary */
+.container {
+    max-width: 600px; /* Max width for larger screens */
+    margin: 0 auto;
+    padding: 0 15px; /* Padding on mobile */
+}
+
+/* =========================================
+   Header
+   ========================================= */
+header {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #4a4a4a;
+}
+
+header h1 {
+    font-weight: 600;
+    font-size: 1.8em; /* Slightly larger title */
+}
+
+header h1 i {
+    margin-right: 8px;
+    color: #007bff; /* Primary color for icon */
+}
+
+
+/* =========================================
+   Card Styling (Base for Sections)
+   ========================================= */
+.card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #0056b3; /* Darker blue for headings */
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+}
+
+.card h2 i {
+    margin-right: 8px;
+}
+
+/* =========================================
+   Budget Summary Card
+   ========================================= */
 #budget-name-display {
     font-size: 1.3em; /* Buat sedikit lebih besar */
     font-weight: 600;
@@ -13,7 +79,81 @@
     padding-bottom: 0;
 }
 
-/* Styling untuk input tanggal */
+.budget-summary .summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Vertically align items */
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+
+.budget-summary .summary-item span {
+    color: #555;
+}
+
+.budget-summary .summary-item strong {
+    font-weight: 600;
+}
+
+.budget-summary .remaining strong {
+    color: #28a745; /* Green for remaining budget */
+    font-size: 1.1em;
+}
+.budget-summary .remaining.warning strong {
+    color: #ffc107; /* Yellow for warning */
+}
+.budget-summary .remaining.overspending strong {
+    color: #dc3545; /* Red for overspending */
+}
+
+.progress-bar-container {
+    background-color: #e9ecef;
+    border-radius: 25px;
+    height: 12px; /* Slimmer progress bar */
+    overflow: hidden;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.progress-bar {
+    background-color: #28a745; /* Default Green */
+    height: 100%;
+    width: 0%; /* Starts at 0 */
+    border-radius: 25px;
+    transition: width 0.5s ease-in-out, background-color 0.5s ease;
+}
+
+.progress-bar.warning {
+    background-color: #ffc107; /* Yellow */
+}
+
+.progress-bar.overspending {
+    background-color: #dc3545; /* Red */
+}
+
+#set-budget-btn {
+    margin-top: 15px;
+    width: 100%;
+}
+
+/* =========================================
+   Add Expense Form
+   ========================================= */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 400; /* Lighter label weight */
+    color: #555;
+    font-size: 0.95em;
+}
+
+/* Common styles for text, number, and date inputs */
+.form-group input[type="text"],
+.form-group input[type="number"],
 .form-group input[type="date"] {
     width: 100%;
     padding: 10px 12px;
@@ -21,39 +161,222 @@
     border-radius: 6px;
     font-size: 1em;
     font-family: 'Poppins', sans-serif;
-    /* Pastikan warna teks terlihat */
-    color: #495057;
+    color: #495057; /* Ensure text color is visible, especially for date */
     background-color: #fff; /* Explicit background */
 }
 
-/* Style specific to date input appearance if needed */
-.form-group input[type="date"]:focus {
-     outline: none;
+/* Remove spinner arrows on number inputs */
+.form-group input[type=number]::-webkit-inner-spin-button,
+.form-group input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.form-group input[type=number] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+/* Focus styles for inputs */
+.form-group input:focus {
+    outline: none;
     border-color: #80bdff;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
-/* Menampilkan Tanggal di Daftar Pengeluaran */
+/* =========================================
+   Button Styling (General)
+   ========================================= */
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 10px 15px;
+    font-size: 1em;
+    border-radius: 6px;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn i {
+    margin-right: 5px;
+}
+
+/* Primary Button (Add Expense) */
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    width: 100%; /* Make add button full width */
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Secondary Button (Set Budget) */
+.btn-secondary {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+/* Danger Button (Clear Data) */
+.btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+/* Info Button (Export/Import) */
+.btn-info {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+.btn-info:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+}
+
+
+/* =========================================
+   Expense List
+   ========================================= */
+#expenses-ul {
+    list-style: none;
+    padding: 0;
+    max-height: 350px; /* Slightly increase height limit */
+    overflow-y: auto; /* Add scroll only when needed */
+}
+
+/* Style for individual list items */
+#expenses-ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Vertically align content */
+    padding: 10px 5px; /* Slightly less padding */
+    border-bottom: 1px solid #eee;
+    font-size: 0.95em;
+    gap: 5px; /* Add small gap between flex items */
+}
+
+#expenses-ul li:last-child {
+    border-bottom: none;
+}
+
+/* Style for the "No expenses" message */
+#expenses-ul .no-expenses {
+    text-align: center;
+    color: #888;
+    padding: 20px;
+    font-style: italic;
+    justify-content: center; /* Center the text */
+    border-bottom: none; /* Remove border if it's the only item */
+}
+
+/* Style for the date within an expense item */
 #expenses-ul .expense-item .date {
     font-size: 0.8em; /* Tanggal lebih kecil */
     color: #6c757d; /* Warna abu-abu */
-    margin-right: 10px;
-    min-width: 80px; /* Align with amount */
+    flex-shrink: 0; /* Prevent date from shrinking */
+    min-width: 75px; /* Fixed minimum width for alignment */
     text-align: left;
 }
 
-/* Adjust flex layout for expense item to include date */
-#expenses-ul li {
-    /* ... (style li sebelumnya) ... */
-    /* Mungkin perlu sedikit penyesuaian flex properties jika layout berantakan */
-    /* Contoh: pastikan description bisa mengecil jika perlu */
+/* Style for the description span */
+#expenses-ul .expense-item span:nth-child(2) { /* Target the description specifically */
+    flex-grow: 1; /* Allow description to take available space */
+    word-break: break-word; /* Break long descriptions */
+    text-align: left; /* Ensure description aligns left */
 }
 
-#expenses-ul .expense-item span:first-of-type { /* Target description */
-    flex-grow: 1;
-    margin-right: 5px; /* Kurangi margin jika perlu */
-    word-break: break-word;
+/* Style for the amount span */
+#expenses-ul .expense-item .amount {
+    font-weight: 600;
+    min-width: 85px; /* Ensure amount alignment */
+    text-align: right;
+    color: #dc3545; /* Make expense amount red */
+    flex-shrink: 0; /* Prevent amount from shrinking */
+}
+
+/* Style for the delete button */
+.delete-btn {
+    background: none;
+    border: none;
+    color: #cc0000; /* Slightly darker red */
+    cursor: pointer;
+    font-size: 1.1em;
+    padding: 5px; /* Make clickable area slightly larger */
+    line-height: 1; /* Prevent extra spacing */
+    flex-shrink: 0; /* Prevent button from shrinking */
+    transition: color 0.2s ease;
+}
+.delete-btn:hover {
+    color: #a70000; /* Darker red on hover */
+}
+
+/* =========================================
+   Data Management Section
+   ========================================= */
+.data-management .disclaimer {
+    font-size: 0.85em;
+    color: #6c757d;
+    margin-bottom: 15px;
+    background-color: #f8f9fa;
+    padding: 10px 15px;
+    border-radius: 4px;
+    border-left: 4px solid #17a2b8; /* Info color accent */
+}
+.data-management .disclaimer i {
+    margin-right: 8px;
+    vertical-align: middle; /* Align icon better */
+}
+
+.data-management .button-group {
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap on small screens */
+    gap: 10px; /* Space between buttons */
+}
+
+/* Make data management buttons grow */
+.data-management .button-group .btn,
+.data-management .button-group label.btn { /* Target the label styled as a button too */
+     flex-grow: 1;
+     min-width: 120px; /* Minimum button width */
+     margin: 0; /* Reset any potential margin */
+}
+
+/* Hide the actual file input visually but keep it accessible */
+#import-file {
+    display: none;
 }
 
 
-/* ... (Sisa CSS sebelumnya tetap sama) ... */
+/* =========================================
+   Responsive Adjustments (Optional Example)
+   ========================================= */
+@media (min-width: 768px) {
+    header h1 {
+        font-size: 2em; /* Slightly larger title on desktop */
+    }
+
+    .card {
+        padding: 25px; /* More padding on larger screens */
+    }
+
+    /* Example: Maybe make data management buttons not full width */
+    /* .data-management .button-group .btn {
+        flex-grow: 0;
+    } */
+}
