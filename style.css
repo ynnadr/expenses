@@ -7,19 +7,24 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f0f2f5; /* Light grey background */
     color: #333;
     line-height: 1.6;
-    padding-top: 20px; /* Add space at the top */
-    padding-bottom: 50px; /* Space for footer or just breathing room */
+    padding-top: 20px;
+    padding-bottom: 50px;
+    font-size: 16px; /* Base font size */
 }
 
 .container {
-    max-width: 600px; /* Max width for larger screens */
+    max-width: 700px; /* Slightly wider max width */
     margin: 0 auto;
-    padding: 0 15px; /* Padding on mobile */
+    padding: 0 15px;
 }
 
 /* =========================================
@@ -27,20 +32,19 @@ body {
    ========================================= */
 header {
     text-align: center;
-    margin-bottom: 25px;
-    color: #4a4a4a;
+    margin-bottom: 30px;
+    color: #343a40; /* Darker grey */
 }
 
 header h1 {
     font-weight: 600;
-    font-size: 1.8em; /* Slightly larger title */
+    font-size: 1.9em;
 }
 
 header h1 i {
-    margin-right: 8px;
-    color: #007bff; /* Primary color for icon */
+    margin-right: 10px;
+    color: #007bff;
 }
-
 
 /* =========================================
    Card Styling (Base for Sections)
@@ -48,90 +52,126 @@ header h1 i {
 .card {
     background-color: #ffffff;
     border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px 25px; /* Slightly more padding */
+    margin-bottom: 25px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08); /* Softer shadow */
+    overflow: hidden; /* Contain children */
 }
 
 .card h2 {
-    font-size: 1.2em;
+    font-size: 1.25em;
     font-weight: 600;
-    margin-bottom: 15px;
-    color: #0056b3; /* Darker blue for headings */
-    border-bottom: 1px solid #eee;
-    padding-bottom: 8px;
+    margin-bottom: 18px;
+    color: #0056b3;
+    border-bottom: 1px solid #e9ecef; /* Lighter border */
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
 }
 
 .card h2 i {
-    margin-right: 8px;
+    margin-right: 10px;
+    font-size: 1em; /* Match heading size */
 }
 
 /* =========================================
-   Budget Summary Card
+   Category Chart Card
    ========================================= */
-#budget-name-display {
-    font-size: 1.3em; /* Buat sedikit lebih besar */
-    font-weight: 600;
-    margin-bottom: 15px;
-    color: #333; /* Warna standar */
+.category-chart-card h2 {
     text-align: center;
-    border-bottom: none; /* Hapus border bawaan h2 */
-    padding-bottom: 0;
+    border-bottom: none;
+    margin-bottom: 15px;
+    justify-content: center; /* Center icon and text */
 }
 
-.budget-summary .summary-item {
+.chart-container {
+    position: relative;
+    margin: 0 auto 15px auto;
+    height: 280px; /* Adjust height as needed */
+    width: 100%;
+    max-width: 320px;
+}
+
+.no-expenses-msg {
+    text-align: center;
+    color: #888;
+    padding: 30px 10px;
+    font-style: italic;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Optional: slight background */
+    border-radius: 5px;
+}
+
+.no-expenses-msg.hidden {
+    display: none;
+}
+
+/* =========================================
+   Budget Summary Details Card
+   ========================================= */
+.budget-summary-details h2 { /* Budget name display */
+    font-size: 1.3em;
+    font-weight: 600;
+    text-align: center;
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.budget-summary-details .summary-item {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Vertically align items */
-    margin-bottom: 10px;
+    align-items: center;
+    margin-bottom: 12px;
     font-size: 1em;
+    padding: 5px 0;
 }
 
-.budget-summary .summary-item span {
+.budget-summary-details .summary-item span {
     color: #555;
 }
 
-.budget-summary .summary-item strong {
+.budget-summary-details .summary-item strong {
     font-weight: 600;
 }
 
-.budget-summary .remaining strong {
-    color: #28a745; /* Green for remaining budget */
+.budget-summary-details .remaining strong {
+    color: #28a745;
     font-size: 1.1em;
 }
-.budget-summary .remaining.warning strong {
-    color: #ffc107; /* Yellow for warning */
+.budget-summary-details .remaining.warning strong {
+    color: #ffc107;
 }
-.budget-summary .remaining.overspending strong {
-    color: #dc3545; /* Red for overspending */
+.budget-summary-details .remaining.overspending strong {
+    color: #dc3545;
 }
 
 .progress-bar-container {
     background-color: #e9ecef;
     border-radius: 25px;
-    height: 12px; /* Slimmer progress bar */
+    height: 12px;
     overflow: hidden;
     margin-top: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .progress-bar {
-    background-color: #28a745; /* Default Green */
+    background-color: #28a745;
     height: 100%;
-    width: 0%; /* Starts at 0 */
+    width: 0%;
     border-radius: 25px;
     transition: width 0.5s ease-in-out, background-color 0.5s ease;
 }
 
-.progress-bar.warning {
-    background-color: #ffc107; /* Yellow */
-}
+.progress-bar.warning { background-color: #ffc107; }
+.progress-bar.overspending { background-color: #dc3545; }
 
-.progress-bar.overspending {
-    background-color: #dc3545; /* Red */
-}
-
-#set-budget-btn {
+.budget-summary-details #set-budget-btn {
     margin-top: 15px;
     width: 100%;
 }
@@ -140,260 +180,22 @@ header h1 i {
    Add Expense Form
    ========================================= */
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 18px; /* More spacing */
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: 400; /* Lighter label weight */
-    color: #555;
+    margin-bottom: 6px;
+    font-weight: 500; /* Slightly bolder label */
+    color: #495057;
     font-size: 0.95em;
 }
 
-/* Common styles for text, number, and date inputs */
 .form-group input[type="text"],
 .form-group input[type="number"],
-.form-group input[type="date"] {
+.form-group input[type="date"],
+.form-group select {
     width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #ced4da;
-    border-radius: 6px;
-    font-size: 1em;
-    font-family: 'Poppins', sans-serif;
-    color: #495057; /* Ensure text color is visible, especially for date */
-    background-color: #fff; /* Explicit background */
-}
-
-/* Remove spinner arrows on number inputs */
-.form-group input[type=number]::-webkit-inner-spin-button,
-.form-group input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-.form-group input[type=number] {
-  -moz-appearance: textfield; /* Firefox */
-}
-
-/* Focus styles for inputs */
-.form-group input:focus {
-    outline: none;
-    border-color: #80bdff;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-}
-
-/* =========================================
-   Button Styling (General)
-   ========================================= */
-.btn {
-    display: inline-block;
-    font-weight: 400;
-    text-align: center;
-    vertical-align: middle;
-    cursor: pointer;
-    user-select: none;
-    border: 1px solid transparent;
-    padding: 10px 15px;
-    font-size: 1em;
-    border-radius: 6px;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    font-family: 'Poppins', sans-serif;
-}
-
-.btn i {
-    margin-right: 5px;
-}
-
-/* Primary Button (Add Expense) */
-.btn-primary {
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
-    width: 100%; /* Make add button full width */
-}
-.btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
-}
-
-/* Secondary Button (Set Budget) */
-.btn-secondary {
-    color: #fff;
-    background-color: #6c757d;
-    border-color: #6c757d;
-}
-.btn-secondary:hover {
-    background-color: #5a6268;
-    border-color: #545b62;
-}
-
-/* Danger Button (Clear Data) */
-.btn-danger {
-    color: #fff;
-    background-color: #dc3545;
-    border-color: #dc3545;
-}
-.btn-danger:hover {
-    background-color: #c82333;
-    border-color: #bd2130;
-}
-
-/* Info Button (Export/Import) */
-.btn-info {
-    color: #fff;
-    background-color: #17a2b8;
-    border-color: #17a2b8;
-}
-.btn-info:hover {
-    background-color: #138496;
-    border-color: #117a8b;
-}
-
-
-/* =========================================
-   Expense List
-   ========================================= */
-#expenses-ul {
-    list-style: none;
-    padding: 0;
-    max-height: 350px; /* Slightly increase height limit */
-    overflow-y: auto; /* Add scroll only when needed */
-}
-
-/* Style for individual list items */
-#expenses-ul li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; /* Vertically align content */
-    padding: 10px 5px; /* Slightly less padding */
-    border-bottom: 1px solid #eee;
-    font-size: 0.95em;
-    gap: 5px; /* Add small gap between flex items */
-}
-
-#expenses-ul li:last-child {
-    border-bottom: none;
-}
-
-/* Style for the "No expenses" message */
-#expenses-ul .no-expenses {
-    text-align: center;
-    color: #888;
-    padding: 20px;
-    font-style: italic;
-    justify-content: center; /* Center the text */
-    border-bottom: none; /* Remove border if it's the only item */
-}
-
-/* Style for the date within an expense item */
-#expenses-ul .expense-item .date {
-    font-size: 0.8em; /* Tanggal lebih kecil */
-    color: #6c757d; /* Warna abu-abu */
-    flex-shrink: 0; /* Prevent date from shrinking */
-    min-width: 75px; /* Fixed minimum width for alignment */
-    text-align: left;
-}
-
-/* Style for the description span */
-#expenses-ul .expense-item span:nth-child(2) { /* Target the description specifically */
-    flex-grow: 1; /* Allow description to take available space */
-    word-break: break-word; /* Break long descriptions */
-    text-align: left; /* Ensure description aligns left */
-}
-
-/* Style for the amount span */
-#expenses-ul .expense-item .amount {
-    font-weight: 600;
-    min-width: 85px; /* Ensure amount alignment */
-    text-align: right;
-    color: #dc3545; /* Make expense amount red */
-    flex-shrink: 0; /* Prevent amount from shrinking */
-}
-
-/* Style for the delete button */
-.delete-btn {
-    background: none;
-    border: none;
-    color: #cc0000; /* Slightly darker red */
-    cursor: pointer;
-    font-size: 1.1em;
-    padding: 5px; /* Make clickable area slightly larger */
-    line-height: 1; /* Prevent extra spacing */
-    flex-shrink: 0; /* Prevent button from shrinking */
-    transition: color 0.2s ease;
-}
-.delete-btn:hover {
-    color: #a70000; /* Darker red on hover */
-}
-
-/* =========================================
-   Data Management Section
-   ========================================= */
-.data-management .disclaimer {
-    font-size: 0.85em;
-    color: #6c757d;
-    margin-bottom: 15px;
-    background-color: #f8f9fa;
-    padding: 10px 15px;
-    border-radius: 4px;
-    border-left: 4px solid #17a2b8; /* Info color accent */
-}
-.data-management .disclaimer i {
-    margin-right: 8px;
-    vertical-align: middle; /* Align icon better */
-}
-
-.data-management .button-group {
-    display: flex;
-    flex-wrap: wrap; /* Allow buttons to wrap on small screens */
-    gap: 10px; /* Space between buttons */
-}
-
-/* Make data management buttons grow */
-.data-management .button-group .btn,
-.data-management .button-group label.btn { /* Target the label styled as a button too */
-     flex-grow: 1;
-     min-width: 120px; /* Minimum button width */
-     margin: 0; /* Reset any potential margin */
-}
-
-/* Hide the actual file input visually but keep it accessible */
-#import-file {
-    display: none;
-}
-
-
-/* =========================================
-   Responsive Adjustments (Optional Example)
-   ========================================= */
-@media (min-width: 768px) {
-    header h1 {
-        font-size: 2em; /* Slightly larger title on desktop */
-    }
-
-    .card {
-        padding: 25px; /* More padding on larger screens */
-    }
-
-    /* Example: Maybe make data management buttons not full width */
-    /* .data-management .button-group .btn {
-        flex-grow: 0;
-    } */
-}
-/* =========================================
-   Add Expense Form - Kategori
-   ========================================= */
-
-/* Wrapper untuk select dan tombol tambah */
-.category-select-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 8px; /* Jarak antara select dan tombol */
-}
-
-.form-group select#expense-category {
-    flex-grow: 1; /* Biarkan select mengisi ruang */
-    /* Style dasar sama dengan input lain */
     padding: 10px 12px;
     border: 1px solid #ced4da;
     border-radius: 6px;
@@ -401,32 +203,45 @@ header h1 i {
     font-family: 'Poppins', sans-serif;
     color: #495057;
     background-color: #fff;
-    /* Appearance untuk style default browser */
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    /* Tambahkan panah dropdown kustom jika diinginkan */
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007bff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    background-size: 10px auto;
-    padding-right: 35px; /* Ruang untuk panah */
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.form-group select#expense-category:focus {
+.form-group input:focus,
+.form-group select:focus {
     outline: none;
     border-color: #80bdff;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
-/* Tombol kecil untuk tambah kategori */
+/* Number input spinner removal */
+.form-group input[type=number]::-webkit-inner-spin-button,
+.form-group input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none; margin: 0;
+}
+.form-group input[type=number] { -moz-appearance: textfield; }
+
+/* Category Select Specifics */
+.category-select-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-group select#expense-category {
+    flex-grow: 1;
+    appearance: none; -webkit-appearance: none; -moz-appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%236c757d%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat; background-position: right 12px center; background-size: 10px auto;
+    padding-right: 35px;
+}
+
 .btn-add-category {
-    flex-shrink: 0; /* Jangan biarkan tombol menyusut */
-    background-color: #28a745; /* Warna hijau */
+    flex-shrink: 0;
+    background-color: #28a745;
     color: white;
     border: none;
-    border-radius: 50%; /* Bulat */
-    width: 38px; /* Ukuran tetap */
+    border-radius: 50%;
+    width: 38px;
     height: 38px;
     font-size: 1.1em;
     cursor: pointer;
@@ -434,235 +249,243 @@ header h1 i {
     justify-content: center;
     align-items: center;
     transition: background-color 0.2s ease;
-    padding: 0; /* Hapus padding default button */
+    padding: 0;
 }
-
-.btn-add-category:hover {
-    background-color: #218838; /* Hijau lebih gelap */
-}
-.btn-add-category i {
-    margin: 0; /* Hapus margin default ikon */
-}
-
+.btn-add-category:hover { background-color: #218838; }
+.btn-add-category i { margin: 0; }
 
 /* =========================================
-   Expense List - Kategori
+   Button Styling (General)
    ========================================= */
-
-/* Menampilkan Kategori di Daftar Pengeluaran */
-#expenses-ul .expense-item .category {
-    font-size: 0.8em;
-    color: #fff; /* Putih */
-    background-color: #6c757d; /* Abu-abu sekunder */
-    padding: 2px 6px;
-    border-radius: 4px;
-    margin-right: 8px;
-    white-space: nowrap; /* Hindari wrap jika nama kategori panjang */
-    flex-shrink: 0; /* Jangan biarkan menyusut */
-}
-
-/* Adjust flex layout for expense item to include category */
-#expenses-ul li.expense-item {
-    /* Pastikan ada cukup ruang */
-    /* Anda mungkin perlu menyesuaikan min-width pada elemen lain jika perlu */
-}
-
-/* Sedikit ubah target untuk description span karena ada category span sebelumnya */
-#expenses-ul .expense-item span:nth-child(3) { /* Target the description specifically */
-    flex-grow: 1;
-    margin-right: 5px;
-    word-break: break-word;
-    text-align: left;
-}
-
-/* ... (CSS sebelumnya tetap sama) ... */
-
-/* =========================================
-   Category Chart Card
-   ========================================= */
-
-.category-chart-card h2 {
-    /* Sesuaikan style heading jika perlu */
+.btn {
+    display: inline-block;
+    font-weight: 500; /* Slightly bolder button text */
     text-align: center;
-    border-bottom: none; /* Hapus border jika mau */
-    margin-bottom: 15px;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 10px 18px; /* Slightly more padding */
+    font-size: 1em;
+    border-radius: 6px;
+    transition: all 0.15s ease-in-out;
+    font-family: 'Poppins', sans-serif;
 }
 
-.chart-container {
-    position: relative;
-    margin: 0 auto; /* Pusatkan jika ada max-width */
-    height: 280px; /* Mungkin perlu lebih tinggi untuk pie chart kategori */
+.btn i { margin-right: 6px; }
+
+.btn-primary { color: #fff; background-color: #007bff; border-color: #007bff; }
+.btn-primary:hover { background-color: #0056b3; border-color: #0056b3; }
+.btn-primary:focus { box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5); }
+
+.btn-secondary { color: #fff; background-color: #6c757d; border-color: #6c757d; }
+.btn-secondary:hover { background-color: #5a6268; border-color: #545b62; }
+.btn-secondary:focus { box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5); }
+
+.btn-danger { color: #fff; background-color: #dc3545; border-color: #dc3545; }
+.btn-danger:hover { background-color: #c82333; border-color: #bd2130; }
+.btn-danger:focus { box-shadow: 0 0 0 0.2rem rgba(225, 83, 97, 0.5); }
+
+.btn-info { color: #fff; background-color: #17a2b8; border-color: #17a2b8; }
+.btn-info:hover { background-color: #138496; border-color: #117a8b; }
+.btn-info:focus { box-shadow: 0 0 0 0.2rem rgba(58, 176, 195, 0.5); }
+
+/* Primary button in form full width */
+.add-expense form button[type="submit"] {
     width: 100%;
-    max-width: 320px; /* Batas lebar maksimum */
-}
-
-/* Pesan jika tidak ada data chart */
-.no-expenses-msg {
-    text-align: center;
-    color: #888;
-    padding: 30px 10px;
-    font-style: italic;
-    position: absolute; /* Tumpuk di atas canvas (jika kosong) */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-}
-
-.no-expenses-msg.hidden {
-    display: none;
+    padding: 12px; /* Larger padding for main action */
 }
 
 /* =========================================
-   Budget Summary Details Card (jika dipisah)
+   Expense List
    ========================================= */
-.budget-summary-details h2 {
-    /* Style heading */
-     text-align: center;
-     border-bottom: none;
-     padding-bottom: 0;
-     margin-bottom: 15px;
-}
-.budget-summary-details .summary-details {
-    /* Style untuk wrapper detail jika perlu */
-}
-.budget-summary-details #set-budget-btn {
-    margin-top: 20px;
-    width: 100%;
+#expenses-ul {
+    list-style: none;
+    padding: 0;
+    max-height: 400px; /* Allow more items before scroll */
+    overflow-y: auto;
+    margin-top: -10px; /* Counteract padding of first item */
 }
 
-/* ... (CSS sebelumnya tetap sama) ... */
-
-/* =========================================
-   Expense List - Edit Mode & Buttons
-   ========================================= */
-
-/* Style untuk tombol Edit */
-.edit-btn {
-    background: none;
-    border: none;
-    color: #007bff; /* Warna biru primer */
-    cursor: pointer;
-    font-size: 1.1em;
-    padding: 5px;
-    line-height: 1;
-    margin-left: 5px; /* Jarak dari tombol delete */
-    transition: color 0.2s ease;
-}
-.edit-btn:hover {
-    color: #0056b3; /* Biru lebih gelap */
-}
-
-/* Style untuk tombol Simpan & Batal saat inline editing */
-.save-edit-btn,
-.cancel-edit-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.1em;
-    padding: 5px;
-    line-height: 1;
-    margin-left: 5px;
-    transition: color 0.2s ease;
-}
-
-.save-edit-btn {
-    color: #28a745; /* Hijau */
-}
-.save-edit-btn:hover {
-    color: #218838;
-}
-
-.cancel-edit-btn {
-    color: #dc3545; /* Merah */
-}
-.cancel-edit-btn:hover {
-    color: #c82333;
-}
-
-
-/* Style untuk elemen form saat inline editing */
-.expense-item.editing {
-    /* Beri sedikit indikasi visual saat item sedang diedit */
-    background-color: #f8f9fa;
-    /* padding: 10px; */ /* Sesuaikan padding jika perlu */
-}
-
-/* Sembunyikan elemen display saat editing */
-.expense-item.editing .category,
-.expense-item.editing .date,
-.expense-item.editing span:nth-child(3), /* Deskripsi */
-.expense-item.editing .amount,
-.expense-item.editing .edit-btn,
-.expense-item.editing .delete-btn {
-    display: none;
-}
-
-/* Tampilkan elemen form hanya saat editing */
-.expense-item .edit-form-elements {
-    display: none; /* Sembunyikan secara default */
-    width: 100%;
+#expenses-ul li {
     display: flex;
-    flex-wrap: wrap; /* Biarkan wrap jika perlu */
+    justify-content: space-between;
     align-items: center;
+    padding: 12px 10px; /* Adjust padding */
+    border-bottom: 1px solid #eee;
+    font-size: 0.95em;
     gap: 8px;
 }
+#expenses-ul li:last-child { border-bottom: none; }
 
-.expense-item.editing .edit-form-elements {
-    display: flex; /* Tampilkan saat editing */
+#expenses-ul .no-expenses {
+    text-align: center; color: #888; padding: 25px; font-style: italic;
+    justify-content: center; border-bottom: none;
 }
 
-/* Style input inline agar ringkas */
+/* Elements within list item */
+#expenses-ul .expense-item .category {
+    font-size: 0.75em; color: #fff; background-color: #6c757d;
+    padding: 2px 6px; border-radius: 4px; white-space: nowrap;
+    flex-shrink: 0; text-transform: capitalize;
+}
+#expenses-ul .expense-item .date {
+    font-size: 0.8em; color: #6c757d; flex-shrink: 0;
+    min-width: 80px; text-align: left;
+}
+/* Description span needs specific targeting now */
+#expenses-ul .expense-item > span:nth-of-type(3) {
+    flex-grow: 1; word-break: break-word; text-align: left; margin: 0 5px;
+}
+#expenses-ul .expense-item .amount {
+    font-weight: 600; min-width: 90px; text-align: right;
+    color: #5a5a5a; /* Less aggressive color than red */
+    flex-shrink: 0;
+}
+#expenses-ul .expense-item .item-actions {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 5px; /* Space between edit/delete */
+}
+
+/* Action buttons within list */
+.edit-btn, .delete-btn {
+    background: none; border: none; cursor: pointer;
+    font-size: 1.1em; padding: 5px; line-height: 1;
+    transition: color 0.2s ease;
+}
+.edit-btn { color: #007bff; }
+.edit-btn:hover { color: #0056b3; }
+.delete-btn { color: #dc3545; }
+.delete-btn:hover { color: #c82333; }
+
+/* =========================================
+   Expense List - Inline Editing Styles
+   ========================================= */
+.expense-item.editing {
+    background-color: #eef7ff; /* Light blue background for editing */
+    /* Ensure flex properties are maintained or adjusted */
+    flex-wrap: wrap; /* Allow edit form to wrap if needed */
+}
+
+/* Hide display elements when editing */
+.expense-item.editing .category,
+.expense-item.editing .date,
+.expense-item.editing > span:nth-of-type(3), /* Direct description span */
+.expense-item.editing .amount,
+.expense-item.editing .item-actions {
+    display: none;
+}
+
+/* Show edit form elements when editing */
+.expense-item .edit-form-elements { display: none; } /* Hide by default */
+.expense-item.editing .edit-form-elements {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 5px 0; /* Add some padding */
+}
+
+/* Style inline form elements */
 .expense-item.editing .edit-form-elements input[type="date"],
 .expense-item.editing .edit-form-elements select,
 .expense-item.editing .edit-form-elements input[type="text"],
 .expense-item.editing .edit-form-elements input[type="number"] {
-    padding: 5px 8px; /* Padding lebih kecil */
-    font-size: 0.9em; /* Font lebih kecil */
+    padding: 6px 8px; /* Consistent small padding */
+    font-size: 0.9em;
     border: 1px solid #ced4da;
     border-radius: 4px;
     font-family: 'Poppins', sans-serif;
 }
-
-.expense-item.editing .edit-form-elements input[type="date"] {
-    min-width: 110px;
-    flex-basis: 110px; /* Lebar dasar */
-    flex-grow: 0;
+.expense-item.editing .edit-form-elements input[type="date"]:focus,
+.expense-item.editing .edit-form-elements select:focus,
+.expense-item.editing .edit-form-elements input[type="text"]:focus,
+.expense-item.editing .edit-form-elements input[type="number"]:focus {
+     border-color: #80bdff; box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.25);
 }
-.expense-item.editing .edit-form-elements select {
-    min-width: 100px;
-    flex-basis: 100px;
-    flex-grow: 1; /* Biarkan kategori mengisi ruang */
-     /* Appearance for select */
+
+
+/* Sizing and growing for inline elements */
+.expense-item.editing .edit-form-elements .edit-date { flex-basis: 120px; flex-grow: 0; }
+.expense-item.editing .edit-form-elements .edit-category { flex-basis: 110px; flex-grow: 1; /* Allow category to grow */
+    /* Appearance for select */
     appearance: none; -webkit-appearance: none; -moz-appearance: none;
     background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%236c757d%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
     background-repeat: no-repeat; background-position: right 8px center; background-size: 8px auto;
     padding-right: 25px;
 }
-.expense-item.editing .edit-form-elements input[type="text"] {
-    flex-grow: 2; /* Deskripsi bisa lebih lebar */
-    min-width: 120px;
-}
-.expense-item.editing .edit-form-elements input[type="number"] {
-    min-width: 90px;
-    flex-basis: 90px;
-    flex-grow: 0;
-    text-align: right;
-}
+.expense-item.editing .edit-form-elements .edit-description { flex-grow: 2; flex-basis: 130px; } /* Description grows most */
+.expense-item.editing .edit-form-elements .edit-amount { flex-basis: 90px; flex-grow: 0; text-align: right; }
 
+/* Inline action buttons container */
 .expense-item.editing .edit-form-actions {
-    margin-left: auto; /* Dorong tombol ke kanan */
+    margin-left: auto; /* Push buttons to the end */
     flex-shrink: 0;
-    display: flex; /* Jaga tombol tetap inline */
+    display: flex;
     gap: 5px;
 }
+.save-edit-btn, .cancel-edit-btn {
+    background: none; border: none; cursor: pointer; font-size: 1.2em; /* Slightly larger icons */
+    padding: 5px; line-height: 1; transition: color 0.2s ease;
+}
+.save-edit-btn { color: #28a745; }
+.save-edit-btn:hover { color: #218838; }
+.cancel-edit-btn { color: #6c757d; } /* Grey for cancel */
+.cancel-edit-btn:hover { color: #5a6268; }
 
+/* =========================================
+   Data Management Section
+   ========================================= */
+.data-management .disclaimer {
+    font-size: 0.88em; color: #6c757d; margin-bottom: 20px;
+    background-color: #f8f9fa; padding: 10px 15px; border-radius: 4px;
+    border-left: 4px solid #17a2b8; /* Info color accent */
+}
+.data-management .disclaimer i { margin-right: 8px; vertical-align: middle; }
 
-/* ... (Sisa CSS lainnya tetap sama) ... */
+.data-management .button-group {
+    display: flex; flex-wrap: wrap; gap: 10px;
+}
+.data-management .button-group .btn,
+.data-management .button-group label.btn {
+     flex: 1 1 150px; /* Allow wrapping and growing, base width 150px */
+     min-width: 120px; margin: 0;
+}
+#import-file { display: none; }
 
-/* Optional: Adjust tooltip appearance if needed */
-.chartjs-tooltip {
-    /* Custom styling for tooltip if default isn't enough */
+/* =========================================
+   Footer
+   ========================================= */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.9em;
+    color: #6c757d;
 }
 
-/* ... (Sisa CSS lainnya tetap sama) ... */
+/* =========================================
+   Responsive Adjustments
+   ========================================= */
+@media (min-width: 576px) {
+    /* Example: Increase chart size slightly on larger screens */
+    .chart-container {
+         height: 300px;
+         max-width: 350px;
+    }
+     /* Example: Less wrapping for inline edit form */
+    .expense-item.editing .edit-form-elements { flex-wrap: nowrap; }
+    .expense-item.editing .edit-form-elements .edit-description { min-width: 150px; } /* Allow description more space */
+}
+
+@media (min-width: 768px) {
+    body { font-size: 17px; } /* Slightly larger base font on desktop */
+    header h1 { font-size: 2.1em; }
+    .card { padding: 25px 30px; }
+    .data-management .button-group .btn,
+    .data-management .button-group label.btn {
+         flex-basis: auto; /* Don't force wrap as much */
+    }
+}
