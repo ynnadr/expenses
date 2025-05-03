@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 li.dataset.id = expense.id;
                 // Tampilkan kategori, tanggal, deskripsi, jumlah, tombol hapus
                 li.innerHTML = `
-                    <span class="category">${expense.category || 'Lainnya'}</span> {/* Tampilkan kategori */}
+                    <span class="category">${expense.category || 'Lainnya'}</span>
                     <span class="date">${formatDate(expense.date)}</span>
                     <span>${expense.description}</span>
                     <span class="amount">${formatCurrency(expense.amount)}</span>
