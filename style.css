@@ -475,5 +475,66 @@ header h1 i {
     text-align: left;
 }
 
+/* ... (CSS sebelumnya tetap sama) ... */
+
+/* =========================================
+   Category Chart Card
+   ========================================= */
+
+.category-chart-card h2 {
+    /* Sesuaikan style heading jika perlu */
+    text-align: center;
+    border-bottom: none; /* Hapus border jika mau */
+    margin-bottom: 15px;
+}
+
+.chart-container {
+    position: relative;
+    margin: 0 auto; /* Pusatkan jika ada max-width */
+    height: 280px; /* Mungkin perlu lebih tinggi untuk pie chart kategori */
+    width: 100%;
+    max-width: 320px; /* Batas lebar maksimum */
+}
+
+/* Pesan jika tidak ada data chart */
+.no-expenses-msg {
+    text-align: center;
+    color: #888;
+    padding: 30px 10px;
+    font-style: italic;
+    position: absolute; /* Tumpuk di atas canvas (jika kosong) */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+.no-expenses-msg.hidden {
+    display: none;
+}
+
+/* =========================================
+   Budget Summary Details Card (jika dipisah)
+   ========================================= */
+.budget-summary-details h2 {
+    /* Style heading */
+     text-align: center;
+     border-bottom: none;
+     padding-bottom: 0;
+     margin-bottom: 15px;
+}
+.budget-summary-details .summary-details {
+    /* Style untuk wrapper detail jika perlu */
+}
+.budget-summary-details #set-budget-btn {
+    margin-top: 20px;
+    width: 100%;
+}
+
+
+/* Optional: Adjust tooltip appearance if needed */
+.chartjs-tooltip {
+    /* Custom styling for tooltip if default isn't enough */
+}
 
 /* ... (Sisa CSS lainnya tetap sama) ... */
