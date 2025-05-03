@@ -531,6 +531,134 @@ header h1 i {
     width: 100%;
 }
 
+/* ... (CSS sebelumnya tetap sama) ... */
+
+/* =========================================
+   Expense List - Edit Mode & Buttons
+   ========================================= */
+
+/* Style untuk tombol Edit */
+.edit-btn {
+    background: none;
+    border: none;
+    color: #007bff; /* Warna biru primer */
+    cursor: pointer;
+    font-size: 1.1em;
+    padding: 5px;
+    line-height: 1;
+    margin-left: 5px; /* Jarak dari tombol delete */
+    transition: color 0.2s ease;
+}
+.edit-btn:hover {
+    color: #0056b3; /* Biru lebih gelap */
+}
+
+/* Style untuk tombol Simpan & Batal saat inline editing */
+.save-edit-btn,
+.cancel-edit-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    padding: 5px;
+    line-height: 1;
+    margin-left: 5px;
+    transition: color 0.2s ease;
+}
+
+.save-edit-btn {
+    color: #28a745; /* Hijau */
+}
+.save-edit-btn:hover {
+    color: #218838;
+}
+
+.cancel-edit-btn {
+    color: #dc3545; /* Merah */
+}
+.cancel-edit-btn:hover {
+    color: #c82333;
+}
+
+
+/* Style untuk elemen form saat inline editing */
+.expense-item.editing {
+    /* Beri sedikit indikasi visual saat item sedang diedit */
+    background-color: #f8f9fa;
+    /* padding: 10px; */ /* Sesuaikan padding jika perlu */
+}
+
+/* Sembunyikan elemen display saat editing */
+.expense-item.editing .category,
+.expense-item.editing .date,
+.expense-item.editing span:nth-child(3), /* Deskripsi */
+.expense-item.editing .amount,
+.expense-item.editing .edit-btn,
+.expense-item.editing .delete-btn {
+    display: none;
+}
+
+/* Tampilkan elemen form hanya saat editing */
+.expense-item .edit-form-elements {
+    display: none; /* Sembunyikan secara default */
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap; /* Biarkan wrap jika perlu */
+    align-items: center;
+    gap: 8px;
+}
+
+.expense-item.editing .edit-form-elements {
+    display: flex; /* Tampilkan saat editing */
+}
+
+/* Style input inline agar ringkas */
+.expense-item.editing .edit-form-elements input[type="date"],
+.expense-item.editing .edit-form-elements select,
+.expense-item.editing .edit-form-elements input[type="text"],
+.expense-item.editing .edit-form-elements input[type="number"] {
+    padding: 5px 8px; /* Padding lebih kecil */
+    font-size: 0.9em; /* Font lebih kecil */
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.expense-item.editing .edit-form-elements input[type="date"] {
+    min-width: 110px;
+    flex-basis: 110px; /* Lebar dasar */
+    flex-grow: 0;
+}
+.expense-item.editing .edit-form-elements select {
+    min-width: 100px;
+    flex-basis: 100px;
+    flex-grow: 1; /* Biarkan kategori mengisi ruang */
+     /* Appearance for select */
+    appearance: none; -webkit-appearance: none; -moz-appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%236c757d%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat; background-position: right 8px center; background-size: 8px auto;
+    padding-right: 25px;
+}
+.expense-item.editing .edit-form-elements input[type="text"] {
+    flex-grow: 2; /* Deskripsi bisa lebih lebar */
+    min-width: 120px;
+}
+.expense-item.editing .edit-form-elements input[type="number"] {
+    min-width: 90px;
+    flex-basis: 90px;
+    flex-grow: 0;
+    text-align: right;
+}
+
+.expense-item.editing .edit-form-actions {
+    margin-left: auto; /* Dorong tombol ke kanan */
+    flex-shrink: 0;
+    display: flex; /* Jaga tombol tetap inline */
+    gap: 5px;
+}
+
+
+/* ... (Sisa CSS lainnya tetap sama) ... */
 
 /* Optional: Adjust tooltip appearance if needed */
 .chartjs-tooltip {
