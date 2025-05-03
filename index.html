@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelacak Anggaran</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Icon library (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-wallet"></i> Pelacak Anggaran</h1>
+        </header>
+
+        <section class="budget-summary card">
+            <h2>Ringkasan Anggaran</h2>
+            <div class="summary-item">
+                <span>Anggaran Ditetapkan:</span>
+                <strong id="budget-total">Rp 0</strong>
+            </div>
+            <div class="summary-item">
+                <span>Total Pengeluaran:</span>
+                <strong id="budget-spent">Rp 0</strong>
+            </div>
+            <div class="summary-item remaining">
+                <span>Sisa Anggaran:</span>
+                <strong id="budget-remaining">Rp 0</strong>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="budget-progress"></div>
+            </div>
+            <button id="set-budget-btn" class="btn btn-secondary"><i class="fas fa-edit"></i> Atur/Ubah Anggaran</button>
+        </section>
+
+        <section class="add-expense card">
+            <h2><i class="fas fa-plus-circle"></i> Tambah Pengeluaran</h2>
+            <form id="expense-form">
+                <div class="form-group">
+                    <label for="expense-description">Deskripsi:</label>
+                    <input type="text" id="expense-description" placeholder="Contoh: Makan siang" required>
+                </div>
+                <div class="form-group">
+                    <label for="expense-amount">Jumlah (Rp):</label>
+                    <input type="number" id="expense-amount" placeholder="Contoh: 50000" required min="0" step="any">
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Tambahkan</button>
+            </form>
+        </section>
+
+        <section class="expense-list card">
+            <h2><i class="fas fa-list-ul"></i> Daftar Pengeluaran</h2>
+            <ul id="expenses-ul">
+                <!-- Daftar pengeluaran akan muncul di sini -->
+                <li class="no-expenses">Belum ada pengeluaran.</li>
+            </ul>
+        </section>
+
+         <section class="data-management card">
+            <h2><i class="fas fa-database"></i> Manajemen Data</h2>
+            <p class="disclaimer">
+                <i class="fas fa-info-circle"></i> Data Anda disimpan hanya di browser ini. Bersihkan cache akan menghapus data. Lakukan backup secara berkala.
+            </p>
+            <div class="button-group">
+                <button id="export-btn" class="btn btn-info"><i class="fas fa-download"></i> Ekspor Data</button>
+                <label for="import-file" class="btn btn-info"><i class="fas fa-upload"></i> Impor Data</label>
+                <input type="file" id="import-file" accept=".json" style="display: none;">
+                <button id="clear-data-btn" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Hapus Semua Data</button>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <!-- Bisa ditambahkan footer jika perlu -->
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
