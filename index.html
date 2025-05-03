@@ -18,9 +18,9 @@
         </header>
 
         <section class="budget-summary card">
-            <!-- REVISI: Tambahkan tempat untuk nama anggaran -->
             <h2 id="budget-name-display">Anggaran: (Belum Diatur)</h2>
-            <div class="summary-item">
+            <!-- ... (Summary items dan progress bar tetap sama) ... -->
+             <div class="summary-item">
                 <span>Anggaran Ditetapkan:</span>
                 <strong id="budget-total">Rp 0</strong>
             </div>
@@ -43,10 +43,22 @@
             <form id="expense-form">
                 <div class="form-group">
                     <label for="expense-description">Deskripsi:</label>
-                    <input type="text" id="expense-description" placeholder="Contoh: Makan siang" required>
+                    <input type="text" id="expense-description" placeholder="Contoh: Makan siang, Beras 10kg" required>
                 </div>
-                <!-- REVISI: Tambahkan input tanggal -->
-                <div class="form-group">
+                <!-- REVISI: Tambahkan pemilihan kategori -->
+                <div class="form-group category-group">
+                    <label for="expense-category">Kategori:</label>
+                    <div class="category-select-wrapper">
+                         <select id="expense-category" required>
+                            <option value="" disabled selected>-- Pilih Kategori --</option>
+                            <!-- Opsi kategori akan diisi oleh JS -->
+                        </select>
+                        <button type="button" id="add-category-btn" class="btn-add-category" title="Tambah Kategori Baru">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                 <div class="form-group">
                     <label for="expense-date">Tanggal:</label>
                     <input type="date" id="expense-date" required>
                 </div>
@@ -66,6 +78,7 @@
         </section>
 
          <section class="data-management card">
+             <!-- ... (Isi Data Management tetap sama) ... -->
             <h2><i class="fas fa-database"></i> Manajemen Data</h2>
             <p class="disclaimer">
                 <i class="fas fa-info-circle"></i> Data Anda disimpan hanya di browser ini. Bersihkan cache akan menghapus data. Lakukan backup secara berkala.
