@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 li.classList.add('expense-item');
                 li.dataset.id = expense.id;
                 li.innerHTML = `
-                    <span class="date">${formatDate(expense.date)}</span> {/* Tampilkan tanggal */}
+                    <span class="date">${formatDate(expense.date)}</span>
                     <span>${expense.description}</span>
                     <span class="amount">${formatCurrency(expense.amount)}</span>
                     <button class="delete-btn" aria-label="Hapus pengeluaran ${expense.description}">
